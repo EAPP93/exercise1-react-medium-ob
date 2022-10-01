@@ -1,0 +1,90 @@
+.container{
+  width: 15rem;
+  height: 20rem;
+  background-color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+}
+
+.container__title{
+  text-align: center;
+}
+
+.container__value{
+  width: 100%;
+  height: 30%;
+  background-color: rgb(218, 211, 211);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem 1rem 0 0;
+  color: white;
+  font-size: 2rem;
+}
+
+.container__btnCount{
+  width: 100%;
+  height: 20%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: rgb(218, 211, 210);
+}
+
+.container__btnCount .btn{
+  border-width: 0 1px 0 1px;
+  border-style: solid;
+  border-color: rgb(192, 192, 192);
+  font-size: 1.5rem;
+}
+
+.container__minMax{
+  width: 100%;
+  height: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.container__minMax .btn:first-of-type{
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.container__minMax .btn{
+  border-right: 1px solid rgb(192, 192, 192);
+}
+
+.container__minMax .input:first-of-type{
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.container__inputStep{
+  width: 100%;
+  height: 12%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: rgb(192, 192, 192);
+  background-color: rgb(218, 211, 211);
+  border-radius: 0 0 1rem 1rem;
+  overflow: hidden;
+}
+
+.container__inputStep .btn{
+  border-right: 1px solid rgb(192, 192, 192);
+}
+
+/* generales */
+.btn{
+  background-color: rgb(239, 239, 239);
+}
+.input{
+  width: 100%;
+  text-align: center;
+  background-color: white;
+}
+
+
+
+
