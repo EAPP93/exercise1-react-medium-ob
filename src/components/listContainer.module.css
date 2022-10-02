@@ -1,0 +1,29 @@
+.listContainer{
+  grid-column: 1/-1;
+  grid-row: 3/9;
+  background-color: rgb(218, 211, 211);
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+.listContainer li{
+  width: 100%;
+  list-style: none;
+  margin-bottom: 1.1rem;
+  position: relative;
+
+}
+
+.listContainer li p{
+  display: inline-block;
+  background-color: white;
+  width: 80%;
+  height: 100%;
+}
+
+.listContainer li button{
+  position: absolute;
+  right: 0;
+  width: 20%;
+  height: 100%;
+}

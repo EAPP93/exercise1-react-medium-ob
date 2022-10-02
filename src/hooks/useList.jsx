@@ -1,38 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const useList = (initialValue = []) => {
-    const [value, setValue] = useState (initialValue);
+const useList = (initialList = []) => {
+    const [stateList, setStateList] = useState(initialList)
+    const [isEmpty, setIsEmpty] = useState(true);
+    const [sort, setSort] = useState(false);
+    const [reverse, setReverse] = useState(false);
+    const [list, setList] = useState([]);
 
-    // Push new value to list
     const push = (element) => {
-        setValue( ( oldValue ) => [...oldValue, element ] );
+        console.log(`stateList: ${stateList}`)
+        element !== '' ?
+        setStateList( ( oldValue ) => [...oldValue, element ] )
+        : setStateList(stateList)
+        console.log(`push: ${element}, stateList: ${stateList}`)
     };
 
-    // Remove value from list
     const remove = (index) => {
-        setValue((oldValue) => oldValue.filter((_, i) => i !== index));
+        setStateList((oldValue) => oldValue.filter((_, i) => i !== index));
     };
 
-    // List is Empty ? true / false
-    const isEmpty = () => value.length === 0;
-    
-    const reset = () => setValue([]);
+    const reset = () => setStateList([]);
+    const Sort = () => !sort && reverse ? setSort(false) : setSort(!sort);
+    const Reverse = () => !reverse && sort ? setReverse(false) : setReverse(!reverse)
 
-    const sort = () => {
-        const desordenada = value
-        const ordenada = desordenada.sort((a,b) => a - b)
-        setValue(ordenada)
-    };
+    useEffect(() => {
+        stateList.length !== 0 ? setIsEmpty(false) : setIsEmpty(true);
+        setList(stateList)
+        if (sort === true) {
+            setList(list.sort())
+        } else if (reverse === true) {
+            setList(list.reverse(''))
+        } else {
+            setList(stateList)
+        }
+        
+    }, [stateList, sort , reverse, isEmpty, list]);
 
-    const reverse = () => {
-        const normal = value
-        const reverse = normal.reverse('')
-        setValue(reverse)
-        console.log(`normal: ${normal} - reverse${reverse} useList`)
-    };
-
+    // console.log(`"useList" - List:${list}, stateList:${stateList}, isEmpty:${isEmpty}, sort:${sort}, reverse:${reverse}`)
     return {
-        value, push, remove, isEmpty, reset, sort, reverse
+        list, push, remove, reset, isEmpty, Sort, Reverse
     };
 };
 

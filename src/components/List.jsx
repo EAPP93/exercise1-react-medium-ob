@@ -1,43 +1,37 @@
 import React, { useRef } from 'react'
 import styles from './List.module.css'
 import useList from './../hooks/useList'
+import ListContainer from './ListContainer'
 
 function List() {
-  const list = useList()
-  console.log(`${list.value} hola desde list component`)
-  const inputRef = useRef()
+  const tasks = useList()
+  const taskRef = useRef()
 
-  const agregar = () => {
-    list.push(inputRef.current.value)
+  const add = (e) => {
+    e.preventDefault()
+    tasks.push(taskRef.current.value)
   }
 
-  const eliminar = (index) => {
-    list.remove(index)
+  const remove = (index) => {
+    tasks.remove(index)
   }
 
-  // TODO: refresh state when push sort or reverse
+  // value={newTask} onChange={handleInputChange}
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title} >List</h1>
-      <div className={styles.inputContainer}>
-        <input ref={inputRef} className={styles.input} placeholder=' input'></input>
-      </div>
+      <form onSubmit={add} className={styles.inputContainer}>
+        <input type='text' ref={taskRef} className={styles.input} placeholder=' input'></input>
+        <button className={styles.btn} type='submit'> ADD taks</button>
+      </form>
 
       <div className={styles.btnContainer}>
-        <button className={styles.btn} onClick={() => agregar()}>Agregar</button>
-        <button className={styles.btn} onClick={list.reset}>Reset</button>
-        <button className={styles.btn} onClick={list.sort}>Sort</button>
-        <button className={styles.btn} onClick={list.reverse}>Reverse</button>
+        <button className={styles.btn} onClick={() => tasks.reset()}>Reset</button>
+        <button className={styles.btn} onClick={() => tasks.Sort()}>Sort</button>
+        <button className={styles.btn} onClick={() => tasks.Reverse()}>Reverse</button>
       </div>
-      <ul className={styles.listContainer} >
-        {list.value.map((el, index) => (
-          <li key={index}>
-            <p>{el}</p>
-            <button onClick={() => eliminar(index)}>delete</button>
-          </li>
-        ))}
-      </ul>
+      <ListContainer remove={remove} list={tasks.list} isEmpty={tasks.isEmpty}/>
     </div>
   )
 }
